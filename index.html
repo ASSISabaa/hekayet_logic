@@ -9,23 +9,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--gold:#C9A84C;--deep:#0D0B14;--cream:#FAF8F4;--purple:#534AB7;--purple-light:#EEEDFE;--teal:#1D9E75;--teal-light:#E1F5EE;--teal-deep:#085041;--coral:#D85A30;--coral-light:#FAECE7;--text:#1A1628;--muted:#6B6282}
 body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--text);direction:rtl}
-.setup-screen{position:fixed;inset:0;background:var(--deep);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
-.setup-card{background:#1A1628;border-radius:20px;padding:32px 24px;max-width:400px;width:100%;border:0.5px solid rgba(201,168,76,0.2)}
-.setup-logo{display:flex;align-items:center;gap:10px;margin-bottom:24px;justify-content:center}
-.setup-star{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
-.setup-name{font-size:20px;font-weight:900;color:#fff}.setup-name span{color:var(--gold)}
-.setup-title{font-size:18px;font-weight:800;color:#fff;margin-bottom:8px;text-align:center}
-.setup-sub{font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:24px;text-align:center;line-height:1.65}
-.setup-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
-.setup-step{background:rgba(255,255,255,0.04);border-radius:12px;padding:12px 14px;display:flex;align-items:flex-start;gap:10px}
-.step-num{width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--deep);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.step-txt{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.55}
-.step-txt a{color:var(--gold);text-decoration:none}
-.key-input{width:100%;background:rgba(255,255,255,0.06);border:0.5px solid rgba(201,168,76,0.3);border-radius:10px;padding:13px 14px;font-family:'Tajawal',sans-serif;font-size:14px;color:#fff;outline:none;margin-bottom:12px;direction:ltr;text-align:left}
-.key-input::placeholder{color:rgba(255,255,255,0.25);direction:rtl;text-align:right}
-.key-input:focus{border-color:var(--gold)}
-.setup-btn{width:100%;background:var(--gold);color:var(--deep);font-family:'Tajawal',sans-serif;font-size:15px;font-weight:800;padding:13px;border-radius:10px;border:none;cursor:pointer}
-.setup-err{font-size:12px;color:#F09595;text-align:center;margin-top:8px;display:none}
 .nav{background:var(--deep);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
 .logo{display:flex;align-items:center;gap:8px}
 .logo-star{width:28px;height:28px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px}
@@ -115,6 +98,7 @@ textarea:focus{border-color:var(--gold)}
 .fg{display:flex;flex-direction:column;gap:4px}.fg.full{grid-column:1/-1}
 .flabel{font-size:12px;font-weight:700;color:var(--text)}
 select,.finput{border:0.5px solid rgba(0,0,0,0.12);border-radius:9px;padding:9px 11px;font-family:'Tajawal',sans-serif;font-size:13px;color:var(--text);outline:none;background:#fff}
+select:focus,.finput:focus{border-color:var(--teal)}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{padding:5px 11px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid transparent;background:#F0EBE0;color:var(--muted)}
 .chip.sel{background:var(--teal-light);color:var(--teal-deep);border-color:var(--teal)}
@@ -131,42 +115,12 @@ select,.finput{border:0.5px solid rgba(0,0,0,0.12);border-radius:9px;padding:9px
 .act-tag.fun{background:#FDF8EC;color:#633806}
 .act-tag.learn{background:var(--purple-light);color:#3C3489}
 .act-tag.rest{background:var(--teal-light);color:var(--teal-deep)}
-footer{background:#1A1628;padding:18px;text-align:center}
+footer{background:#1A1628;padding:18px;text-align:center;border-top:0.5px solid rgba(255,255,255,0.05)}
 footer p{font-size:12px;color:rgba(255,255,255,0.3)}
 footer span{color:var(--gold)}
 </style>
 </head>
 <body>
-
-<!-- شاشة إدخال المفتاح -->
-<div class="setup-screen" id="setupScreen">
-  <div class="setup-card">
-    <div class="setup-logo">
-      <div class="setup-star">⭐</div>
-      <span class="setup-name">حكاية <span>لوجيك</span></span>
-    </div>
-    <div class="setup-title">أهلاً بك! 🤍</div>
-    <p class="setup-sub">لتشغيل الذكاء الاصطناعي بحتاج مفتاح Gemini مجاني من Google</p>
-    <div class="setup-steps">
-      <div class="setup-step">
-        <div class="step-num">1</div>
-        <div class="step-txt">روحي على <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a></div>
-      </div>
-      <div class="setup-step">
-        <div class="step-num">2</div>
-        <div class="step-txt">اضغطي <strong style="color:#fff">"Get API key"</strong> ثم <strong style="color:#fff">"Create API key"</strong></div>
-      </div>
-      <div class="setup-step">
-        <div class="step-num">3</div>
-        <div class="step-txt">انسخي المفتاح وحطيه هون 👇</div>
-      </div>
-    </div>
-    <input class="key-input" id="keyInput" type="password" placeholder="AIzaSy... (المفتاح يبقى على جهازك فقط)">
-    <button class="setup-btn" onclick="saveKey()">ابدأي الاستخدام ←</button>
-    <div class="setup-err" id="setupErr">مفتاح غير صحيح. تأكدي وحاولي مجدداً.</div>
-  </div>
-</div>
-
 <nav class="nav">
   <div class="logo"><div class="logo-star">⭐</div><span class="logo-name">حكاية <span>لوجيك</span></span></div>
   <div class="nav-tabs">
@@ -194,19 +148,28 @@ footer span{color:var(--gold)}
         <button class="action-btn upl" onclick="document.getElementById('fimg').click()">🖼️ رفع صورة</button>
         <input id="fimg" type="file" accept="image/*" capture="environment" style="display:none" onchange="handleImg(this)">
       </div>
-      <div class="camera-area" id="camArea"><video id="vid" autoplay playsinline></video><div class="cam-overlay"><button class="cam-btn" onclick="stopCam()">✕</button><button class="cam-btn cap" onclick="snap()">📸</button></div></div>
-      <div class="preview-wrap" id="prevWrap"><img id="prevImg" src="" alt=""><button class="preview-x" onclick="clearImg()">✕</button></div>
+      <div class="camera-area" id="camArea">
+        <video id="vid" autoplay playsinline></video>
+        <div class="cam-overlay">
+          <button class="cam-btn" onclick="stopCam()">✕</button>
+          <button class="cam-btn cap" onclick="snap()">📸</button>
+        </div>
+      </div>
+      <div class="preview-wrap" id="prevWrap">
+        <img id="prevImg" src="" alt="">
+        <button class="preview-x" onclick="clearImg()">✕</button>
+      </div>
       <canvas id="cvs" style="display:none"></canvas>
       <div class="or-row"><div class="or-line"></div><span class="or-txt">أو اكتبي المكونات</span><div class="or-line"></div></div>
       <textarea id="ingTxt" placeholder="مثال: دقيق قمح، سكر، حليب مجفف، بيض..."></textarea>
       <div style="margin-top:12px"><div class="flabel" style="margin-bottom:7px">حساسيات طفلك:</div><div class="badges-row" id="alList"></div></div>
       <button class="main-btn dark" id="scanBtn" onclick="runScan()">🔍 افحصي الآن</button>
-      <div class="spinner-wrap" id="scanSpin"><div class="spinner"></div><div class="spinner-txt">يحلل المكونات...</div></div>
+      <div class="spinner-wrap" id="scanSpin"><div class="spinner"></div><div class="spinner-txt">الذكاء الاصطناعي يحلل المكونات...</div></div>
       <div class="result-box" id="scanRes"><div class="res-emoji" id="resE"></div><div class="res-title" id="resT"></div><div class="res-detail" id="resD"></div></div>
     </div>
   </div>
   <div class="panel" id="panel-adhd">
-    <div class="gift-banner"><span class="gift-icon">🧠</span><div class="gift-text"><h3>مساعد ADHD الذكي</h3><p>اسأليني أي شيء عن ADHD أو التنمر</p></div></div>
+    <div class="gift-banner"><span class="gift-icon">🧠</span><div class="gift-text"><h3>مساعد ADHD الذكي</h3><p>اسأليني أي شيء عن ADHD أو التنمر أو التعامل مع طفلك</p></div></div>
     <div class="quick-row">
       <button class="qbtn" onclick="askQ('كيف أساعد طفلي على التركيز؟')">كيف أساعده على التركيز؟</button>
       <button class="qbtn" onclick="askQ('طفلي وقف عن المدرسة بسبب التنمر، شو أعمل؟')">وقف بسبب التنمر</button>
@@ -214,57 +177,45 @@ footer span{color:var(--gold)}
       <button class="qbtn" onclick="askQ('كيف أبني ثقة طفلي بنفسه بعد التنمر؟')">إعادة بناء الثقة</button>
     </div>
     <div class="chat-box">
-      <div class="chat-head"><div class="chat-av">ح</div><div class="chat-info"><h3>مساعد حكاية لوجيك <span class="online"></span></h3><p>متخصص في ADHD والتنمر</p></div></div>
-      <div class="msgs" id="msgs"><div class="msg ai"><div class="msg-name">مساعد حكاية لوجيك</div>أهلاً بك! 🤍 اسأليني بكل حرية.</div></div>
-      <div class="chat-foot"><textarea class="chat-in" id="chatIn" placeholder="اكتبي سؤالك..." rows="1" onkeydown="onEnter(event)"></textarea><button class="send" id="sendBtn" onclick="sendMsg()">إرسال</button></div>
+      <div class="chat-head"><div class="chat-av">ح</div><div class="chat-info"><h3>مساعد حكاية لوجيك <span class="online"></span></h3><p>متخصص في ADHD والتنمر وصعوبات التعلم</p></div></div>
+      <div class="msgs" id="msgs"><div class="msg ai"><div class="msg-name">مساعد حكاية لوجيك</div>أهلاً بك! 🤍 أنا هنا لمساعدتك في كل ما يخص طفلك. اسأليني بكل حرية.</div></div>
+      <div class="chat-foot">
+        <textarea class="chat-in" id="chatIn" placeholder="اكتبي سؤالك..." rows="1" onkeydown="onEnter(event)"></textarea>
+        <button class="send" id="sendBtn" onclick="sendMsg()">إرسال</button>
+      </div>
     </div>
   </div>
   <div class="panel" id="panel-school">
-    <div class="gift-banner"><span class="gift-icon">📚</span><div class="gift-text"><h3>خطة التعليم في البيت</h3><p>خطة يومية مخصصة لطفلك</p></div></div>
+    <div class="gift-banner"><span class="gift-icon">📚</span><div class="gift-text"><h3>خطة التعليم في البيت</h3><p>أخبريني عن طفلك وسأولّد خطة يومية مخصصة</p></div></div>
     <div class="card">
       <div class="form-grid">
-        <div class="fg"><label class="flabel">عمر الطفل</label><select id="age"><option>6 سنوات</option><option>7 سنوات</option><option>8 سنوات</option><option selected>9 سنوات</option><option>10 سنوات</option><option>11 سنوات</option><option>12 سنوات</option><option>13 سنوات</option></select></div>
-        <div class="fg"><label class="flabel">مدة التعليم</label><select id="stime"><option>ساعة</option><option selected>ساعتان</option><option>3 ساعات</option></select></div>
+        <div class="fg"><label class="flabel">عمر الطفل</label><select id="age"><option>6 سنوات</option><option>7 سنوات</option><option>8 سنوات</option><option selected>9 سنوات</option><option>10 سنوات</option><option>11 سنوات</option><option>12 سنوات</option><option>13 سنوات</option><option>14 سنوات</option></select></div>
+        <div class="fg"><label class="flabel">مدة التعليم</label><select id="stime"><option>ساعة</option><option selected>ساعتان</option><option>3 ساعات</option><option>4 ساعات</option></select></div>
         <div class="fg"><label class="flabel">مستوى ADHD</label><select id="adhd"><option>خفيف</option><option selected>متوسط</option><option>شديد</option></select></div>
         <div class="fg"><label class="flabel">سبب التعليم المنزلي</label><select id="reason"><option selected>التنمر</option><option>صعوبات تعلم</option><option>ADHD شديد</option></select></div>
-        <div class="fg full"><label class="flabel">اهتمامات طفلك</label><input class="finput" id="ints" type="text" placeholder="كرة القدم، الرسم، الألعاب..."></div>
+        <div class="fg full"><label class="flabel">اهتمامات طفلك</label><input class="finput" id="ints" type="text" placeholder="مثال: كرة القدم، الرسم، الألعاب..."></div>
         <div class="fg full"><label class="flabel">المواد الدراسية</label><div class="chips" id="subGrid"></div></div>
       </div>
-      <button class="main-btn teal" id="genBtn" onclick="genPlan()">✨ ولّدي الخطة</button>
-      <div class="spinner-wrap" id="planSpin"><div class="spinner t"></div><div class="spinner-txt">يصمّم خطة مخصصة...</div></div>
+      <button class="main-btn teal" id="genBtn" onclick="genPlan()">✨ ولّدي الخطة التعليمية</button>
+      <div class="spinner-wrap" id="planSpin"><div class="spinner t"></div><div class="spinner-txt">الذكاء الاصطناعي يصمّم خطة مخصصة...</div></div>
     </div>
     <div class="plan-result" id="planRes"><h3 id="planTitle">📅 الخطة التعليمية</h3><div id="planContent"></div></div>
   </div>
 </div>
-<footer><p>صُنع بكل حب من <span>حكاية لوجيك</span> 🤍</p></footer>
-
+<footer><p>صُنع بكل حب من <span>حكاية لوجيك</span> — هدية مجانية لكل أم تستحق المساعدة 🤍</p></footer>
 <script>
+const KEY='AIzaSyDBP-7kb7z39W9a_XdNwB_fv7ZEhaXzTG4';
+const URL=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${KEY}`;
 const ALS=['مكسرات','حليب','بيض','قمح/جلوتين','فول الصويا','سمك','قشريات','سمسم'];
 const SUBS=['رياضيات','عربي','إنجليزي','علوم','تاريخ','فنون','رياضة','دين'];
 let selAl=new Set(['مكسرات','حليب']),selSub=new Set(['رياضيات','عربي','علوم']);
-let chatHist=[],imgB64=null,camStream=null;
-let API_KEY=localStorage.getItem('hk_key')||'';
+let chatHist=[],imgB64=null,stream=null;
 
 function init(){
-  if(API_KEY)document.getElementById('setupScreen').style.display='none';
   const al=document.getElementById('alList');
   ALS.forEach(a=>{const b=document.createElement('button');b.className='badge '+(selAl.has(a)?'on':'off');b.textContent=a;b.onclick=()=>{selAl.has(a)?(selAl.delete(a),b.className='badge off'):(selAl.add(a),b.className='badge on')};al.appendChild(b)});
   const sg=document.getElementById('subGrid');
   SUBS.forEach(s=>{const c=document.createElement('button');c.className='chip '+(selSub.has(s)?'sel':'');c.textContent=s;c.onclick=()=>{selSub.has(s)?(selSub.delete(s),c.className='chip'):(selSub.add(s),c.className='chip sel')};sg.appendChild(c)});
-}
-
-async function saveKey(){
-  const k=document.getElementById('keyInput').value.trim();
-  if(!k||!k.startsWith('AIza')){document.getElementById('setupErr').style.display='block';return;}
-  document.getElementById('setupErr').style.display='none';
-  const btn=document.querySelector('.setup-btn');btn.textContent='جاري التحقق...';btn.disabled=true;
-  try{
-    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${k}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:[{text:'مرحبا'}]}],generationConfig:{maxOutputTokens:10}})});
-    const d=await r.json();
-    if(d.error){document.getElementById('setupErr').textContent='مفتاح غير صحيح. تأكدي وحاولي مجدداً.';document.getElementById('setupErr').style.display='block';btn.textContent='ابدأي الاستخدام ←';btn.disabled=false;return;}
-    API_KEY=k;localStorage.setItem('hk_key',k);
-    document.getElementById('setupScreen').style.display='none';
-  }catch(e){document.getElementById('setupErr').textContent='خطأ في الاتصال. تأكدي من الإنترنت.';document.getElementById('setupErr').style.display='block';btn.textContent='ابدأي الاستخدام ←';btn.disabled=false;}
 }
 
 function sw(id,navEl,heroEl){
@@ -276,16 +227,19 @@ function sw(id,navEl,heroEl){
   if(id!=='allergy')stopCam();
 }
 
-async function startCam(){try{camStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'},audio:false});document.getElementById('vid').srcObject=camStream;document.getElementById('camArea').style.display='block';document.getElementById('prevWrap').style.display='none';}catch(e){alert('لم نتمكن من الوصول للكاميرا.');}}
-function stopCam(){if(camStream){camStream.getTracks().forEach(t=>t.stop());camStream=null;}document.getElementById('camArea').style.display='none';}
+async function startCam(){
+  try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'},audio:false});document.getElementById('vid').srcObject=stream;document.getElementById('camArea').style.display='block';document.getElementById('prevWrap').style.display='none';}
+  catch(e){alert('لم نتمكن من الوصول للكاميرا. جربي رفع صورة.');}
+}
+function stopCam(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}document.getElementById('camArea').style.display='none';}
 function snap(){const v=document.getElementById('vid'),c=document.getElementById('cvs');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);const d=c.toDataURL('image/jpeg',0.85);imgB64=d.split(',')[1];document.getElementById('prevImg').src=d;document.getElementById('prevWrap').style.display='block';stopCam();}
 function handleImg(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{const d=e.target.result;imgB64=d.split(',')[1];document.getElementById('prevImg').src=d;document.getElementById('prevWrap').style.display='block';};r.readAsDataURL(f);}
-function clearImg(){imgB64=null;document.getElementById('prevWrap').style.display='none';}
+function clearImg(){imgB64=null;document.getElementById('prevWrap').style.display='none';document.getElementById('prevImg').src='';}
 
 async function gemini(parts,sys){
-  const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
-  const finalParts=sys?[...(parts.filter(p=>p.inlineData)),{text:sys+'\n\n'+(parts.find(p=>p.text)||{text:''}).text}]:parts;
-  const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:finalParts}],generationConfig:{maxOutputTokens:900,temperature:0.7}})});
+  const txt=sys?(sys+'\n\n'+(parts.find(p=>p.text)||{text:''}).text):null;
+  const finalParts=sys?[...(parts.filter(p=>p.inlineData)),{text:txt}]:parts;
+  const r=await fetch(URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:finalParts}],generationConfig:{maxOutputTokens:900,temperature:0.7}})});
   const d=await r.json();
   if(d.error)throw new Error(d.error.message);
   return d.candidates[0].content.parts[0].text;
@@ -293,43 +247,49 @@ async function gemini(parts,sys){
 
 async function runScan(){
   const txt=document.getElementById('ingTxt').value.trim();
-  if(!txt&&!imgB64){alert('صوّري المنتج أو اكتبي المكونات');return;}
+  if(!txt&&!imgB64){alert('صوّري المنتج أو اكتبي المكونات أولاً');return;}
   const als=[...selAl].join('، ');
   document.getElementById('scanBtn').disabled=true;
   document.getElementById('scanRes').style.display='none';
   document.getElementById('scanSpin').style.display='block';
   try{
-    const sys=`أنت متخصص حساسية غذائية. حساسيات الطفل: ${als}. رد بـ JSON فقط: {"safe":true/false,"found":[],"message":"رسالة دافئة للأم"}`;
+    const sys=`أنت متخصص حساسية غذائية. حساسيات الطفل: ${als}. رد بـ JSON فقط بدون أي نص آخر: {"safe":true/false,"found":[],"message":"رسالة دافئة للأم"}`;
     const parts=[];
     if(imgB64)parts.push({inlineData:{mimeType:'image/jpeg',data:imgB64}});
     parts.push({text:txt||'اقرأ المكونات من الصورة وحللها.'});
     const rep=await gemini(parts,sys);
-    let res;try{res=JSON.parse(rep.replace(/```json|```/g,'').trim());}catch{res={safe:false,found:[],message:rep};}
+    let res;try{res=JSON.parse(rep.replace(/```json|```/g,'').trim());}catch{res={safe:rep.includes('آمن')&&!rep.includes('غير آمن'),found:[],message:rep};}
     showRes(res);
-  }catch(e){showRes({safe:false,found:[],message:'حدث خطأ في الاتصال. حاولي مجدداً.'});}
+  }catch(e){showRes({safe:false,found:[],message:'حدث خطأ. تأكدي من الاتصال وحاولي مجدداً.'});}
   document.getElementById('scanSpin').style.display='none';
   document.getElementById('scanBtn').disabled=false;
 }
 
 function showRes(r){
-  const b=document.getElementById('scanRes');b.className='result-box '+(r.safe?'safe':'danger');
+  const b=document.getElementById('scanRes');
+  b.className='result-box '+(r.safe?'safe':'danger');
   document.getElementById('resE').textContent=r.safe?'✅':'⛔';
   document.getElementById('resT').textContent=r.safe?'آمن لطفلك 🌿':'تحذير — يحتوي على حساسية!';
-  document.getElementById('resD').textContent=r.message;b.style.display='block';
+  document.getElementById('resD').textContent=r.message||(r.safe?'لا توجد حساسيات.':'يحتوي على: '+r.found.join('، '));
+  b.style.display='block';
 }
 
 async function sendMsg(txt){
-  const inp=document.getElementById('chatIn');const msg=txt||inp.value.trim();if(!msg)return;
-  inp.value='';addMsg(msg,'user');document.getElementById('sendBtn').disabled=true;
-  const sys='أنت مساعد متخصص ومتعاطف في ADHD والتنمر. تتحدث بعربي بسيط ودافئ. اسمك مساعد حكاية لوجيك.';
-  chatHist.push({role:'user',parts:[{text:msg}]});const td=addTyping();
+  const inp=document.getElementById('chatIn');
+  const msg=txt||inp.value.trim();if(!msg)return;
+  inp.value='';addMsg(msg,'user');
+  document.getElementById('sendBtn').disabled=true;
+  const sys='أنت مساعد متخصص ومتعاطف في ADHD والتنمر وصعوبات التعلم. تتحدث بعربي بسيط ودافئ مع الأمهات. تقدم نصائح عملية. اسمك مساعد حكاية لوجيك.';
+  chatHist.push({role:'user',parts:[{text:msg}]});
+  const td=addTyping();
   try{
-    const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
     const contents=chatHist.map((m,i)=>({role:m.role,parts:i===0?[{text:sys+'\n\n'+m.parts[0].text}]:m.parts}));
-    const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents,generationConfig:{maxOutputTokens:700,temperature:0.8}})});
-    const d=await r.json();if(d.error)throw new Error(d.error.message);
+    const r=await fetch(URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents,generationConfig:{maxOutputTokens:700,temperature:0.8}})});
+    const d=await r.json();
+    if(d.error)throw new Error(d.error.message);
     const rep=d.candidates[0].content.parts[0].text;
-    td.remove();addMsg(rep,'ai');chatHist.push({role:'model',parts:[{text:rep}]});
+    td.remove();addMsg(rep,'ai');
+    chatHist.push({role:'model',parts:[{text:rep}]});
   }catch(e){td.remove();addMsg('عذراً، حدث خطأ. حاولي مجدداً.','ai');}
   document.getElementById('sendBtn').disabled=false;
 }
@@ -340,24 +300,35 @@ function addTyping(){const m=document.getElementById('msgs'),d=document.createEl
 function onEnter(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
 
 async function genPlan(){
-  const age=document.getElementById('age').value,stime=document.getElementById('stime').value,adhd=document.getElementById('adhd').value,reason=document.getElementById('reason').value,ints=document.getElementById('ints').value||'ألعاب',subs=[...selSub].join('، ');
-  document.getElementById('genBtn').disabled=true;document.getElementById('planSpin').style.display='block';document.getElementById('planRes').style.display='none';
+  const age=document.getElementById('age').value,stime=document.getElementById('stime').value,adhd=document.getElementById('adhd').value,reason=document.getElementById('reason').value,ints=document.getElementById('ints').value||'ألعاب ورسم',subs=[...selSub].join('، ');
+  document.getElementById('genBtn').disabled=true;
+  document.getElementById('planSpin').style.display='block';
+  document.getElementById('planRes').style.display='none';
   try{
-    const prompt=`اصنع خطة تعليمية منزلية لطفل عمره ${age}، مدة ${stime}، ADHD ${adhd}، سبب: ${reason}، اهتمامات: ${ints}، مواد: ${subs}. يومان فقط، 4 أنشطة كل يوم. JSON فقط: {"title":"عنوان","days":[{"day":"اليوم","activities":[{"time":"الوقت","title":"النشاط","description":"وصف","type":"fun/learn/rest"}]}]}`;
+    const prompt=`أنت متخصص تعليم منزلي. اصنع خطة لطفل عمره ${age}، مدة ${stime}، ADHD ${adhd}، سبب: ${reason}، اهتمامات: ${ints}، مواد: ${subs}. خطة لليومين الأحد والاثنين، 4 أنشطة كل يوم. رد بـ JSON فقط: {"title":"عنوان","days":[{"day":"اليوم","activities":[{"time":"الوقت","title":"النشاط","description":"وصف","type":"fun/learn/rest"}]}]}`;
     const rep=await gemini([{text:prompt}]);
     let plan;try{plan=JSON.parse(rep.replace(/```json|```/g,'').trim());}catch{plan=null;}
     if(plan)showPlan(plan);
+    else document.getElementById('planRes').innerHTML='<p style="color:#6B6282;padding:16px;text-align:center">حدث خطأ. حاولي مجدداً.</p>';
     document.getElementById('planRes').style.display='block';
-  }catch(e){document.getElementById('planRes').innerHTML='<p style="padding:16px;text-align:center;color:#D85A30">خطأ. حاولي مجدداً.</p>';document.getElementById('planRes').style.display='block';}
-  document.getElementById('planSpin').style.display='none';document.getElementById('genBtn').disabled=false;
+  }catch(e){document.getElementById('planRes').style.display='block';document.getElementById('planRes').innerHTML='<p style="color:#D85A30;padding:16px;text-align:center">خطأ في الاتصال.</p>';}
+  document.getElementById('planSpin').style.display='none';
+  document.getElementById('genBtn').disabled=false;
 }
 
 function showPlan(plan){
-  document.getElementById('planTitle').textContent='📅 '+(plan.title||'الخطة');
+  document.getElementById('planTitle').textContent='📅 '+(plan.title||'الخطة التعليمية');
   const c=document.getElementById('planContent');c.innerHTML='';
   (plan.days||[]).forEach(day=>{
-    const b=document.createElement('div');b.className='day-block';b.innerHTML=`<div class="day-title">📆 ${day.day}</div>`;
-    (day.activities||[]).forEach(a=>{const row=document.createElement('div');row.className='act-row';const tl=a.type==='fun'?'🎮 ممتع':a.type==='rest'?'😌 راحة':'📖 تعلم';const tc=a.type==='fun'?'fun':a.type==='rest'?'rest':'learn';row.innerHTML=`<div class="act-time">${a.time||''}</div><div class="act-body"><h4>${a.title||''}</h4><p>${a.description||''}</p><span class="act-tag ${tc}">${tl}</span></div>`;b.appendChild(row);});
+    const b=document.createElement('div');b.className='day-block';
+    b.innerHTML=`<div class="day-title">📆 ${day.day}</div>`;
+    (day.activities||[]).forEach(a=>{
+      const row=document.createElement('div');row.className='act-row';
+      const tl=a.type==='fun'?'🎮 ممتع':a.type==='rest'?'😌 راحة':'📖 تعلم';
+      const tc=a.type==='fun'?'fun':a.type==='rest'?'rest':'learn';
+      row.innerHTML=`<div class="act-time">${a.time||''}</div><div class="act-body"><h4>${a.title||''}</h4><p>${a.description||''}</p><span class="act-tag ${tc}">${tl}</span></div>`;
+      b.appendChild(row);
+    });
     c.appendChild(b);
   });
 }
